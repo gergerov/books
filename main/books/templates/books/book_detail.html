@@ -1,0 +1,31 @@
+{% extends 'books/base.html' %}
+{% load book_tags %}
+
+{% block content %}
+
+<div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} mx-2 my-2">
+    {% book_search_panel request %}
+</div>
+
+<div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} mx-2 my-2">
+    {% author_search_panel request %}
+</div>
+
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{object.avatar_url_or_default}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">"{{object.title|safe}}"</h2>
+                <h6 class="card-title">{{object.get_authors_string}}</h6>
+                <h6 class="card-title">{{object.get_genres_string}}</h6>
+                <p class="card-text">{{object.description_long|safe}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

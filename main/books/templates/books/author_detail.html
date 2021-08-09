@@ -1,0 +1,30 @@
+{% extends 'books/base.html' %}
+{% load book_tags %}
+
+{% block content %}
+
+<div class="row mx-1 my-1 px-1 py-1">
+    {% book_search_panel request %}
+</div>
+
+<div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} mx-2 my-2">
+    {% author_search_panel request %}
+</div>
+
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{object.avatar_url_or_default}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">{{object.name}} {{object.patronymic}} {{object.surname }}</h2>
+                <p class="card-text">{{object.biography|safe}}</p>
+                <p class="card-text"><small class="text-muted">Дата рождения: {{object.date_born|date}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
